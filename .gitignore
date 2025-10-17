@@ -1,0 +1,22 @@
+# Environment variables
+.env
+*.env.local
+
+# Backend
+backend/main
+backend/main.exe
+backend/*.exe
+
+# Frontend
+frontend/node_modules/
+frontend/build/
+frontend/.env.local
+frontend/.env.production.local
+
+# IDE
+.vscode/
+.idea/
+
+# OS
+.DS_Store
+Thumbs.db
