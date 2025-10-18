@@ -85,7 +85,7 @@ const UserManager: React.FC = () => {
     return (
       <div className="auth-container">
         <h2>Please sign in to access the application</h2>
-        <button onClick={() => signIn('http://localhost:3000/callback')}>
+        <button onClick={() => signIn(`${window.location.origin}/callback`)}>
           Sign In
         </button>
       </div>
@@ -96,7 +96,7 @@ const UserManager: React.FC = () => {
     <div className="user-manager">
       <div className="auth-header">
         <h2>User Management</h2>
-        <button onClick={() => signOut('http://localhost:3000')}>
+        <button onClick={() => signOut(window.location.origin)}>
           Sign Out
         </button>
       </div>
