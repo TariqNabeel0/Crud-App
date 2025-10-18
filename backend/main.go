@@ -4,6 +4,7 @@ import (
 	"fmt"
 	"log"
 	"net/http"
+	"os"
 
 	"fullstack-crud-app/database"
 	"fullstack-crud-app/handlers"
@@ -29,13 +30,23 @@ func main() {
 
 	// Enable CORS
 	c := cors.New(cors.Options{
-		AllowedOrigins: []string{"http://localhost:3000"},
+		AllowedOrigins: []string{
+			"http://localhost:3000",
+			"https://crud-app-frontend.vercel.app",
+			"https://*.vercel.app",
+		},
 		AllowedMethods: []string{"GET", "POST", "PUT", "DELETE", "OPTIONS"},
 		AllowedHeaders: []string{"*"},
 	})
 
 	handler := c.Handler(router)
 
-	fmt.Println("Server running on http://localhost:8080")
-	log.Fatal(http.ListenAndServe(":8080", handler))
+	// Get port from environment variable or default to 8080
+	port := os.Getenv("PORT")
+	if port == "" {
+		port = "8080"
+	}
+
+	fmt.Printf("Server running on port %s\n", port)
+	log.Fatal(http.ListenAndServe(":"+port, handler))
 }
